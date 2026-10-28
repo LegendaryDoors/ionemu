@@ -1,0 +1,25 @@
+# build trees
+build/
+build-*/
+CMakeUserPresets.json
+
+# toolchains the release scripts expect beside the sources
+qt/
+linuxdeploy/
+
+# editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+
+# disc images and the emulator's own data files are never committed
+*.cue
+*.bin
+*.mdx
+*.iso
+*.img
+*.flash
+*.state

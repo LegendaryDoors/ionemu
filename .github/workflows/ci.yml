@@ -1,0 +1,97 @@
+name: build
+
+on:
+  push:
+  pull_request:
+
+# Qt comes from the official binaries on every platform (the distribution packages of ubuntu-24.04 are Qt 6.4,
+# below the 6.5 the launcher needs). Windows uses the MinGW toolchain that ships with the Qt binaries, the same
+# family as the validated cross-build in release/build_windows.sh.
+jobs:
+  linux:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build tools
+        run: sudo apt-get update && sudo apt-get install -y ninja-build libgl1-mesa-dev libxkbcommon-dev
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.*'
+          modules: 'qtmultimedia'
+          cache: true
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build
+      - name: Test (the data-driven tests skip without disc images)
+        run: ctest --test-dir build/ioncore --output-on-failure
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ionemu-linux
+          path: |
+            build/frontend/ionemu
+            build/ioncore/ionrun
+            build/ioncore/ionrepair
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.*'
+          arch: 'win64_mingw'
+          modules: 'qtmultimedia'
+          tools: 'tools_mingw1310'
+          cache: true
+      - name: Use the MinGW that comes with Qt, and Ninja
+        shell: bash
+        run: |
+          echo "$(cygpath -w "$IQTA_TOOLS")\\mingw1310_64\\bin" >> "$GITHUB_PATH"
+          choco install ninja --no-progress -y
+      - name: Configure
+        shell: bash
+        run: |
+          gcc --version | head -n1
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+      - name: Build
+        shell: bash
+        run: cmake --build build
+      - name: Test
+        shell: bash
+        run: ctest --test-dir build/ioncore --output-on-failure
+      - name: Deploy the Qt runtime next to the executable
+        shell: bash
+        run: windeployqt --release --no-translations build/frontend/ionemu.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ionemu-windows
+          path: build/frontend
+
+  macos:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: jurplel/install-qt-action@v4
+        with:
+          version: '6.8.*'
+          modules: 'qtmultimedia'
+          cache: true
+      - name: Install Ninja
+        run: HOMEBREW_NO_AUTO_UPDATE=1 brew install ninja
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build
+      - name: Test
+        run: ctest --test-dir build/ioncore --output-on-failure
+      - name: Deploy Qt into the bundle
+        run: |
+          macdeployqt build/frontend/ionemu.app
+          # macdeployqt breaks the signatures and Apple Silicon only runs signed code: ad-hoc sign again
+          codesign --force --deep --sign - build/frontend/ionemu.app
+          ditto -c -k --keepParent build/frontend/ionemu.app build/ionemu-macos.zip
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ionemu-macos
+          path: build/ionemu-macos.zip

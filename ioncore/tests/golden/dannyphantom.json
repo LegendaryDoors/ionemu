@@ -1,0 +1,21 @@
+{
+ "args": [
+  "1",
+  "20000",
+  "--hand-scan"
+ ],
+ "exit": 0,
+ "events": "9f66a1939c0c876e622f12ec5affef3cfa24121e",
+ "n_events": 166,
+ "frames": {
+  "frame_02500.ppm": "bc0b02ebd3275c880d7f47f6492c150889ffee50",
+  "frame_05000.ppm": "401e71edb9c307916c956c3625d512b3b601ce7f",
+  "frame_07500.ppm": "f99020bdbd80065e3ff88390452e32de14a85c2b",
+  "frame_10000.ppm": "2d5970e0492cd292d65bb9259880fd9e796fd900",
+  "frame_12500.ppm": "c50b16288a45d9ff63d3c3adfe18845237b749bf",
+  "frame_15000.ppm": "98519f444247f9b6750a500539518790a4eadd66",
+  "frame_17500.ppm": "b55632ebe612d0b7b4d889e93dc964a40a280ba3"
+ },
+ "wav": "2827c1421a45bcde50e8702c8c052397658a3b20",
+ "ram": "9e9d0449b03994d584a1e9f156f0e9606f557d50"
+}

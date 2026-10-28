@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=iONemu
+Comment=A Hasbro iON emulator
+Exec=ionemu %f
+Icon=ionemu
+Categories=Game;Emulator;
+Terminal=false

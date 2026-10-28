@@ -1,0 +1,26 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="/">
+    <file>icons/play.svg</file>
+    <file>icons/circle-check.svg</file>
+    <file>icons/circle-x.svg</file>
+    <file>icons/download.svg</file>
+    <file>icons/pause.svg</file>
+    <file>icons/rotate-ccw.svg</file>
+    <file>icons/square.svg</file>
+    <file>icons/fast-forward.svg</file>
+    <file>icons/maximize.svg</file>
+    <file>icons/camera.svg</file>
+    <file>icons/settings.svg</file>
+    <file>icons/folder-plus.svg</file>
+    <file>icons/refresh-cw.svg</file>
+    <file>icons/layout-grid.svg</file>
+    <file>icons/list.svg</file>
+    <file>icons/image-down.svg</file>
+    <file>icons/info.svg</file>
+    <file>branding/icon.svg</file>
+    <file>branding/logo.svg</file>
+    <file>licenses/GPL-3.0.txt</file>
+    <file>licenses/THIRD_PARTY.txt</file>
+    <file>licenses/LGPL-3.0.txt</file>
+</qresource>
+</RCC>

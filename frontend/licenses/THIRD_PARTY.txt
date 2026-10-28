@@ -1,0 +1,43 @@
+Third-party notices
+
+This program is free software under the GNU General Public License, version 3 or later (see GPL-3.0.txt).
+It contains or links to the following third-party work:
+
+- MAME u'nSP CPU core (ioncore/src/cpu/unsp and ioncore/src/cpu/mame_orig, generated from and copied from MAME's
+  unsp interpreter). Copyright MAME contributors (Segher Boessenkool, Ryan Holtz, David Haywood and others).
+  GPL-2.0-or-later.
+- MAME SPG2xx video renderer and audio (ioncore/src/ppu, ioncore/src/spu and ioncore/src/spu/mame_orig, derived
+  from spg_renderer and spg2xx_audio). Copyright MAME contributors. BSD-3-Clause; the licence text is below.
+- Qt 6 (Core, Gui, Widgets, Multimedia, MultimediaWidgets, Network, Svg). Copyright The Qt Company Ltd. and
+  contributors. GNU Lesser General Public License, version 3 (LGPL-3.0.txt). The Qt libraries are dynamically linked
+  and can be replaced with your own build of Qt 6.
+- FFmpeg (avcodec, avformat, avutil, swresample, swscale), the media backend of Qt Multimedia, shipped in the release
+  packages. Copyright the FFmpeg developers. GNU Lesser General Public License, version 2.1 or later; source at
+  https://ffmpeg.org. The libraries are dynamically linked and can be replaced.
+- Lucide icons (frontend/icons). Copyright Lucide contributors. ISC licence (frontend/icons/LICENSE).
+
+No game data, firmware or artwork from the Hasbro iON or its discs is included. Hasbro, iON, Nickelodeon and the game
+titles are trademarks of their owners; this project is not affiliated with or endorsed by them.
+
+----------------------------------------------------------------------------------------------------------------------
+BSD-3-Clause (the MAME SPG2xx renderer and audio)
+
+Copyright (c) MAME contributors
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
+following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following
+   disclaimer.
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following
+   disclaimer in the documentation and/or other materials provided with the distribution.
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote
+   products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,
+INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
