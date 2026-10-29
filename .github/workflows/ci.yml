@@ -24,7 +24,7 @@ jobs:
       - name: Build
         run: cmake --build build
       - name: Test (the data-driven tests skip without disc images)
-        run: ctest --test-dir build/ioncore --output-on-failure
+        run: ctest --test-dir build/ioncore --output-on-failure --timeout 300
       - uses: actions/upload-artifact@v4
         with:
           name: ionemu-linux
@@ -53,13 +53,14 @@ jobs:
         shell: bash
         run: |
           gcc --version | head -n1
-          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ \
+            -DCMAKE_EXE_LINKER_FLAGS=-static   # the MinGW runtime linked in, as in the release build: no DLL clash with Git's
       - name: Build
         shell: bash
         run: cmake --build build
       - name: Test
         shell: bash
-        run: ctest --test-dir build/ioncore --output-on-failure
+        run: ctest --test-dir build/ioncore --output-on-failure --timeout 300
       - name: Deploy the Qt runtime next to the executable
         shell: bash
         run: windeployqt --release --no-translations build/frontend/ionemu.exe
@@ -84,7 +85,7 @@ jobs:
       - name: Build
         run: cmake --build build
       - name: Test
-        run: ctest --test-dir build/ioncore --output-on-failure
+        run: ctest --test-dir build/ioncore --output-on-failure --timeout 300
       - name: Deploy Qt into the bundle
         run: |
           macdeployqt build/frontend/ionemu.app
